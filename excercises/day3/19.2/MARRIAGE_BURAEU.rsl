@@ -17,8 +17,8 @@ scheme MARRIAGE_BURAEU =
 
                     all (woman, man) : Couple :- 
                         (woman, man) isin couples => /* The couple that are in the database must satisfy :*/
-                        woman ~isin womens \/   /* womens cant be in the womens table*/
-                        man ~isin mans \/       /* mens cant be in the mens table*/
+                        woman ~isin womens /\   /* womens cant be in the womens table*/
+                        man ~isin mans /\       /* mens cant be in the mens table*/
                         (
                             all (anotherWoman, anotherMan) : Couple :- 
                                 (anotherWoman, anotherMan) isin couples  /\ (anotherWoman, anotherMan) ~= (woman, man) => /* For a different record in database */
