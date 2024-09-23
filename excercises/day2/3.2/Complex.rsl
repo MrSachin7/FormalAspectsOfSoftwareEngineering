@@ -1,0 +1,22 @@
+scheme Complex =
+     class
+         type
+             Complex = Real >< Real
+         
+     value
+        zero : Complex = (0.0,0.0),
+        c : {|(x1, x2): Complex :- x1 = x2|},
+
+        /* Addition of two complex numbers */
+        add: (Complex >< Complex ) -> Complex
+        add((x1,y1),(x2,y2)) is (x1+x2,y1+y2),
+
+        /* Multiplication of two complex numbers */
+        mult : Complex >< Complex -> Complex
+        mult((x1,y1),(x2,y2)) is (x1*x2 - y1*y2, x1*y2 + x2*y1),   
+        
+        /* Define a function, which takes a complex number as argument and returns some complex
+            number which is different. */
+        f : Complex -> Complex
+        f((x,y)) as (a,b) post (a,b) ~= (x,y)
+end

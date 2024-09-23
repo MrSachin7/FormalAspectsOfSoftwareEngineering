@@ -1,0 +1,16 @@
+SYSTEM_OF_COORDINATES
+
+scheme Circle =
+ extend SYSTEM_OF_COORDINATES with
+  class
+    type 
+      Center = Position,
+      Radius = {|r: Real :- r >= 0.0|},
+      Circle = Radius >< Center
+    value
+      on_circle: (Position >< Circle ) -> Bool
+      on_circle((x,y),(r,(x0,y0))) is
+        distance((x,y),(x0,y0)) = r,
+      circle1: Circle = (3.0, origin),
+      pos1: Position :- on_circle(pos1,circle1)
+  end
