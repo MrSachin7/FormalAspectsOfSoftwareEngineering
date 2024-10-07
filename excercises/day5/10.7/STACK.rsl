@@ -1,0 +1,27 @@
+--  7. Write an algebraic specification of stacks by defining a module ‘STACK’ which provides
+-- (a) types, ‘Elem’ and ‘Stack’,
+-- (b) a constant, ‘empty’, representing the empty stack,
+-- (c) a function, ‘push’, which pushes an element on a stack,
+-- (d) a function, ‘top’, which gives the top element (last inserted element) of a stack,
+-- (e) a function, ‘pop’, which removes the top element of a stack.
+
+scheme STACK =
+    class
+        type
+            Elem,
+            Stack = Elem-list,
+            empty = [],
+
+        value
+            push : Elem >< Stack -> Stack
+            push(e, s) is e union s ,
+
+            top : Stack -> Elem
+            top(s) is s(0),
+
+            pop : Stack -> Elem >< Stack
+            pop(s) is 
+                (head s, tail s)
+                pre (s ~= empty),
+    end 
+            

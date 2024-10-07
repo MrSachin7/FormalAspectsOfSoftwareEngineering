@@ -13,7 +13,7 @@ scheme MARRIAGE_BURAEU =
         value
             is_wff: Data -> Bool
             is_wff((womens , mans, couples)) is
-                (
+                ( 
 
                     all (woman, man) : Couple :- 
                         (woman, man) isin couples => /* The couple that are in the database must satisfy :*/
