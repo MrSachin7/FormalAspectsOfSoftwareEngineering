@@ -22,19 +22,19 @@ scheme PAGE =
             number_of: (Word >< Page) -> Nat
             number_of(word, page) is
                 if page = <. .> then 0
-                else number_of_words_in_lines(word, hd page) + number_of(word, tl page)
+                else number_of_words_in_lines(word, ) + number_of(word, tl page)
                 end,
 
             number_of_words_in_lines: (Word >< Line) -> Nat
             number_of_words_in_lines(word, line) is
-                card{idx | idx: Nat :- idx isin inds line /\ is_on_line(word, line)},
+                card{idx | idx: Nat :- idx isin inds line /\ line(idx) = word},
 
             /* A list of correctly spelled words */
 
-            spell_check: (Page >< Dict) -~-> Word-set
+            spell_check: (Page >< Dict) -> Word-set
             spell_check(page, dict) is
                 {w | w: Word :- is_on(w, page) /\ w ~isin dict }
-
+ 
 end
 
             

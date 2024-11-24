@@ -1,0 +1,24 @@
+scheme STACK =
+    class
+        type Elem
+        variable stack : Elem-list
+
+        value
+            empty : Unit -> write stack Unit
+            empty() is stack := <..>,
+
+            is_empty : Unit -> read stack Bool
+            is_empty() is stack =<..>,
+
+            push : Elem -> write stack Unit
+            push(e) is stack := <.e.> ^ stack, 
+
+            pop : Unit -~-> write stack Unit
+            pop() is
+                stack := tl stack
+            pre ~is_empty(),
+
+            top : Unit -~-> read stack Elem
+            top() is hd stack
+            pre ~is_empty()
+    end
